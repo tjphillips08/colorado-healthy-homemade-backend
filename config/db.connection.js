@@ -5,11 +5,12 @@
 // pull PORT from .env, give default value of 4000
 const mongoose = require('mongoose');
 const {MONGODB_URI} = process.env
+console.log("Connected to: " + MONGODB_URI)
 
 ///////////////////////////////
 // DATABASE CONNECTION
 ////////////////////////////////
-mongoose.connect(MONGODB_URI)
+mongoose.connect(MONGODB_URI, (msg)=>console.log(`${msg}`))
 
 // Connection Events
 mongoose.connection

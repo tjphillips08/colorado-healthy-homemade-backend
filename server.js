@@ -4,7 +4,7 @@
 
 // initialize .env variables
 
-require('dotenv').config()
+require('dotenv').config();
 
 require('./config/db.connection')
 
