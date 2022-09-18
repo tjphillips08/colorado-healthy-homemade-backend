@@ -21,12 +21,21 @@ router.post("/", async (req, res) => {
     try {
       // create new person
       res.json(await Food.create(req.body));
-    } catch (error) {
+    } catch (err) {
       //send error
   
-      res.status(400).json(error);
+      res.status(400).json(err);
     }
   });
+
+  // FOOD CREATE ROUTE
+  router.get('/:id', async (req,res)=>{
+    try {
+        res.json(await Food.findById(req.params.id));
+    }catch (err){
+        res.status(400).json(err);
+    }
+  })
 
 
 module.exports = router
