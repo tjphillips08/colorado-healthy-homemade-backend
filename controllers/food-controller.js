@@ -37,5 +37,24 @@ router.post("/", async (req, res) => {
     }
   })
 
+  // FOOD UPDATE ROUTE
+  router.put('/:id',async (req,res)=>{
+    try{
+        res.json(
+            await Food.findByIdAndUpdate(req.params.id, {new:true})
+        )
+    } catch (err) {
+        res.status(400).json(err)
+    }
+  })
+
+  router.delete('/:id',async (req, res) => {
+    try {
+        res.json(await Food.findByIdAndRemove(req.params.id))
+    } catch (err) {
+        res.status(400).json(err)
+    }
+  })
+
 
 module.exports = router
