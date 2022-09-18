@@ -38,10 +38,10 @@ router.post("/", async (req, res) => {
   })
 
   // FOOD UPDATE ROUTE
-  router.put('/:id',async (req,res)=>{
+  router.put('/:id', async (req,res)=>{
     try{
         res.json(
-            await Food.findByIdAndUpdate(req.params.id, {new:true})
+            await Food.findByIdAndUpdate(req.params.id, req.body, {new:true})
         )
     } catch (err) {
         res.status(400).json(err)
