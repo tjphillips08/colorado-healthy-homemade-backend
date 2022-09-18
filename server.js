@@ -4,8 +4,8 @@ require('dotenv').config()
 // require('./config/db.connection')
 
 const express = require ('express')
-// const cors = require('cors')
-// const morgan = require('morgan')
+const cors = require('cors')
+const morgan = require('morgan')
 
 const {PORT = 4000} = process.env
 
@@ -20,4 +20,4 @@ res.send('Hello World')
 
 
 
-app.listen(PORT, ()=> console.log(`listening on ${PORT}`)) 
+app.listen(PORT, ()=> console.log(`listening on ${PORT} ✅`)) 
