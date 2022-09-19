@@ -23,7 +23,7 @@ const app = express()
 // MIDDLEWARE
 app.use(express.json());
 app.use(cors());
-app.use(morgan());
+app.use(morgan('dev'));
 
 // create a test route 
 app.use('/food', foodController)

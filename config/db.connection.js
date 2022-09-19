@@ -10,7 +10,7 @@ console.log("Connected to: " + MONGODB_URI)
 ///////////////////////////////
 // DATABASE CONNECTION
 ////////////////////////////////
-mongoose.connect(MONGODB_URI, (msg)=>console.log(`${msg}`))
+mongoose.connect(MONGODB_URI)
 
 // Connection Events
 mongoose.connection
