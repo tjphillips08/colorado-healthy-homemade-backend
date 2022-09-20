@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Cloudinary = require('../utils/cloudinary')
+const cloudinary = require('../utils/cloudinary')
+const upload = require('../utils/multer')
 
 const {Food} = require('../models')
 
@@ -18,33 +19,37 @@ router.get('/',async (req, res) => {
     }
 })
 // FOOD CREATE ROUTE
-router.post("/", async (req, res) => {
-    const {name,desc,day,image,portions,created} = req.body
+router.post("/",  async (req, res) => {
+    const { name, brand, desc, price, image } = req.body;
+  
     try {
-        if(image){
-            const uploadedResponse = await Cloudinary.uploader.upload(image, {
-                upload_preset:'ml_default'
-
-            })
-            if (uploadedResponse){
-                const food = new Food({
-                    name,
-                    desc,
-                    day,
-                    image:uploadedResponse,
-                    portions,
-                    created,
-                })
-                const savedFood = await food.save()
-                res.status(200).json.send(savedFood)
-            }
-        }
-            } catch (err) {
-                res.status(400).json(err)
-            }
+        if(image) {
+        const uploadedRes = await cloudinary.uploader.upload(image, {
         });
 
+        if (uploadRes) {
+          const food = new Food({
+            name,
+            desc,
+            day,
+            image: uploadedRes,
+            portions,
+            created,
+            
+          });
   
+          const savedFood = await food.save();
+          res.status(200).send(savedFood);
+        }
+      }
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(err);
+    
+    }
+  });
+
+      
 
   // GET FOOD BY ID
   router.get('/:id', async (req,res)=>{
