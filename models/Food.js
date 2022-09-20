@@ -7,7 +7,7 @@ const FoodSchema = new mongoose.Schema(
     day:{type:String, required:true}, 
     image: {type:String, required:true},  
     portions: {type:Number, required:true},  
-    created: {type:Date, required:true, default:Date.now, date:only},
+    created: {type:Date, required:true, default:Date.now},
 
     
 
