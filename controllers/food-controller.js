@@ -35,8 +35,8 @@ router.post("/", async (req, res) => {
                     portions,
                     created,
                 })
-                const saveFood = await food.save()
-                res.json(saveFood)
+                const savedFood = await food.save()
+                res.status(200).json.send(savedFood)
             }
         }
             } catch (err) {
@@ -45,25 +45,15 @@ router.post("/", async (req, res) => {
         });
 
   
-    
-//     try {
-//       // create new person
-//       res.json(await Food.create(req.body));
-//     } catch (err) {
-//       //send error
-  
-//       res.status(400).json(err);
-//     }
-//   });
 
-//   // FOOD CREATE ROUTE
-//   router.get('/:id', async (req,res)=>{
-//     try {
-//         res.json(await Food.findById(req.params.id));
-//     }catch (err){
-//         res.status(400).json(err);
-//     }
-//   })
+  // GET FOOD BY ID
+  router.get('/:id', async (req,res)=>{
+    try {
+        res.json(await Food.findById(req.params.id));
+    }catch (err){
+        res.status(400).json(err);
+    }
+  })
 
   // FOOD UPDATE ROUTE
   router.put('/:id', async (req,res)=>{
