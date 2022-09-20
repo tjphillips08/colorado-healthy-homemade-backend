@@ -7,6 +7,7 @@
 require('dotenv').config();
 
 require('./config/db.connection')
+require('./utils/cloudinary')
 
 
 // import expres
@@ -14,8 +15,11 @@ const express = require ('express')
 const cors = require('cors')
 const morgan = require('morgan')
 
+
 const PORT = process.env.PORT || 4000
 const foodController = require('./controllers/food-controller')
+
+
 
 // create application object
 const app = express()

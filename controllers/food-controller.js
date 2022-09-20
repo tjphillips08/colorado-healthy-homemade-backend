@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Cloudinary = require('../utils/cloudinary')
 
 const {Food} = require('../models')
 
@@ -18,24 +19,51 @@ router.get('/',async (req, res) => {
 })
 // FOOD CREATE ROUTE
 router.post("/", async (req, res) => {
+    const {name,desc,day,image,portions,created} = req.body
     try {
-      // create new person
-      res.json(await Food.create(req.body));
-    } catch (err) {
-      //send error
-  
-      res.status(400).json(err);
-    }
-  });
+        if(image){
+            const uploadedResponse = await Cloudinary.uploader.upload(image, {
+                upload_preset:'ml_default'
 
-  // FOOD CREATE ROUTE
-  router.get('/:id', async (req,res)=>{
-    try {
-        res.json(await Food.findById(req.params.id));
-    }catch (err){
-        res.status(400).json(err);
-    }
-  })
+            })
+            if (uploadedResponse){
+                const food = new Food({
+                    name,
+                    desc,
+                    day,
+                    image:uploadedResponse,
+                    portions,
+                    created,
+                })
+                const saveFood = await food.save()
+                res.json(saveFood)
+            }
+        }
+            } catch (err) {
+                res.status(400).json(err)
+            }
+        });
+
+  
+    
+//     try {
+//       // create new person
+//       res.json(await Food.create(req.body));
+//     } catch (err) {
+//       //send error
+  
+//       res.status(400).json(err);
+//     }
+//   });
+
+//   // FOOD CREATE ROUTE
+//   router.get('/:id', async (req,res)=>{
+//     try {
+//         res.json(await Food.findById(req.params.id));
+//     }catch (err){
+//         res.status(400).json(err);
+//     }
+//   })
 
   // FOOD UPDATE ROUTE
   router.put('/:id', async (req,res)=>{
