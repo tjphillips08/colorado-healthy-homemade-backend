@@ -18,6 +18,7 @@ const morgan = require('morgan')
 
 const PORT = process.env.PORT || 4000
 const foodController = require('./controllers/food-controller')
+const userController = require('./controllers/auth-controller')
 
 
 
@@ -31,6 +32,9 @@ app.use(morgan('dev'));
 
 // create a test route 
 app.use('/food', foodController)
+
+// AUTH CONTROLLER
+app.use('/auth',userController)
 
 app.get('/',(req,res) => {
 res.send('Hello World')
