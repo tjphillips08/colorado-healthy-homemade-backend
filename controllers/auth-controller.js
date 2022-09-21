@@ -12,9 +12,13 @@ router.post('/register',async(req, res) =>{
         const passwordHash = await bcrypt.hash(req.body.password, salt)
         req.body.password = passwordHash
         console.log(req.body)
-        res.status(200).json({message: 'success,hitting register '})
+        const newUser = await User.create(req.body)
+        res.status(201).json({
+            currentUser: newUser,
+            isLoggedIn: true, 
+        })
     }catch(err){
-        res.status(404).json({message: err.message});
+        res.status(400).json({message: err.message});
     
     }
     })
