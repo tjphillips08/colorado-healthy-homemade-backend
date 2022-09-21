@@ -8,14 +8,18 @@ const FoodSchema = new mongoose.Schema(
     image: {type:String, required:true},  
     portions: {type:Number, required:true},  
     created: {type:Date, required:true, default:Date.now},
-
+    // onwer:{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'User',
+    //     required: true
+    // }
     
 
     },
     
     {timestamps: true}
 
-
+    //632b0457434712d1b6bb829e
     
     );
 
