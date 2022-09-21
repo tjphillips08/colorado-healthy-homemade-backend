@@ -54,7 +54,7 @@ router.post("/",  async (req, res) => {
   // GET FOOD BY ID
   router.get('/:id', async (req,res)=>{
     try {
-        res.json(await Food.findById(req.params.id));
+        res.json(await Food.findById(req.params.id)).populate('owner, username').exec;
     }catch (err){
         res.status(400).json(err);
     }
