@@ -29,38 +29,7 @@ router.post("/", async (req, res) => {
     res.status(400).json(err);
   }
 });
-
-// router.post("/",  async (req, res) => {
-//   const { name, brand, desc, price, image } = req.body;
-
-//   try {
-//       if(image) {
-//       const uploadedRes = await cloudinary.uploader.upload(image, {
-//       });
-
-//       if (uploadRes) {
-//         const food = new Food({
-//           name,
-//           desc,
-//           day,
-//           image: uploadedRes,
-//           portions,
-//           created,
-          
-//         });
-
-//         const savedFood = await food.save();
-//         res.status(200).send(savedFood);
-//       }
-//     }
-//   } catch (err) {
-//     console.log(err);
-//     res.status(400).send(err);
-  
-//   }
-// });
-
-      
+    
 
   // GET FOOD BY ID
   router.get('/:id', async (req,res)=>{
